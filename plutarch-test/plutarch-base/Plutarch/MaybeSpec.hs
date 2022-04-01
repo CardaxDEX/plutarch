@@ -5,7 +5,7 @@ import Test.Syd
 import Plutarch
 import Plutarch.Bool (PEq ((#==)))
 import Plutarch.Integer (PInteger)
-import Plutarch.Maybe (PMaybe (PJust, PNothing))
+import Plutarch.Maybe (PMaybe (PJust, PNothing), pfromJust, pmaybe)
 import Plutarch.Test
 
 spec :: Spec
@@ -18,3 +18,12 @@ spec = do
       "false" @\ do
         "nothing-just" @| pcon @(PMaybe PInteger) PNothing #== pcon (PJust 42) @-> passertNot
         "just-just" @| pcon @(PMaybe PInteger) (PJust 24) #== pcon (PJust 42) @-> passertNot
+    "pfromJust" @\ do
+      "nothing" @| pfromJust # pcon PNothing @-> pfails
+      "just" @| pfromJust # pcon (PJust 42) #== (42 :: Term _ PInteger) @-> passert
+    "pmaybe" @\ do
+      "nothing" @| pmaybe # 0 # psucc # pcon PNothing #== (0 :: Term _ PInteger) @-> passert
+      "just" @| pmaybe # 0 # psucc # pcon (PJust 41) #== 42 @-> passert
+
+psucc :: ClosedTerm (PInteger :--> PInteger)
+psucc = phoistAcyclic (plam (+1))
