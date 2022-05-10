@@ -117,6 +117,7 @@ library
     Plutarch.Monadic
     Plutarch.Pair
     Plutarch.Prelude
+    Plutarch.Pretty
     Plutarch.Rational
     Plutarch.Rec
     Plutarch.Rec.TH
@@ -142,6 +143,8 @@ library
     , plutus-core
     , plutus-ledger-api
     , plutus-tx
+    , prettyprinter
+    , random
     , rank2classes
     , serialise
     , sop-core

@@ -41,12 +41,12 @@ import qualified Flat.Run as F
 import GHC.Stack (HasCallStack)
 import Numeric.Natural (Natural)
 import Plutarch.Evaluate (evaluateScript)
+import Plutarch.Reducible (Reducible (Reduce))
 import Plutus.V1.Ledger.Scripts (Script (Script))
 import PlutusCore (Some (Some), ValueOf (ValueOf))
 import qualified PlutusCore as PLC
 import PlutusCore.DeBruijn (DeBruijn (DeBruijn), Index (Index))
 import qualified UntypedPlutusCore as UPLC
-import Plutarch.Reducible (Reducible (Reduce))
 
 {- $hoisted
  __Explanation for hoisted terms:__
